@@ -35,6 +35,7 @@
     emacsql-lite
     org-roam
     )
+  )
 
 (defun org-roam/init-org-roam ()
   (use-package org-roam
