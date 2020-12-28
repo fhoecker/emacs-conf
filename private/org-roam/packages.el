@@ -31,18 +31,21 @@
 
 (defconst org-roam-packages
   '(
-    emacsql
-    emacsql-lite
     org-roam
     )
   )
 
 (defun org-roam/init-org-roam ()
   (use-package org-roam
+    :ensure t
+    :after org
     :hook
     (after-init . org-roam-mode)
+    :defer t
     :custom
-    (org-roam-directory "/mnt/host/perso/roam-notes/")
+    (org-roam-directory
+     (cond ((getenv "ROAM_NOTES_ROOT")) (t "~/perso/roam-notes"))
+     )
     :init
     (progn
       (spacemacs/declare-prefix "ar" "org-roam")
