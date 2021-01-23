@@ -30,11 +30,12 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      org
      org-roam
      org-gcal
-     org-jira
+     ;; org-jira
+     mu4e
      ;; w3m
      python
      yaml
@@ -66,6 +67,7 @@ values."
                                       elpy
                                       emacsql
                                       emacsql-lite
+                                      org-web-tools
                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -321,6 +323,22 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;;; Set up some common mu4e variables
+  (setq mu4e-maildir "/home/wavier/mailrepo"
+        mu4e-drafts-folder "/[Gmail].Drafts"
+        mu4e-sent-folder "/[Gmail].Sent Mail"
+        mu4e-trash-folder "/[Gmail].Trash"
+        mu4e-refile-folder "/[Gmail].All Mail"
+        mu4e-get-mail-command "ls"
+        mu4e-update-interval nil
+        mu4e-compose-signature-auto-include nil
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t)
+
+;;; Mail directory shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/INBOX" . ?g)
+          ("/college/INBOX" . ?c)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -351,8 +369,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(browse-url-browser-function 'browse-url-firefox)
  '(browse-url-generic-program "w3m")
+ '(custom-safe-themes
+   '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
+ '(evil-want-Y-yank-to-eol nil)
+ '(helm-completion-style 'emacs)
+ '(mu4e-maildir "/home/wavier/mailrepo")
  '(package-selected-packages
-   '(w3m yapfify yaml-mode xterm-color unfill powerline smeargle shell-pop pytest pyenv-mode py-isort pip-requirements spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term magit-gitflow magit-popup live-py-mode hydra lv hy-mode dash-functional htmlize parent-mode helm-pydoc projectile helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck pkg-info epl flx highlight evil-magit magit git-commit with-editor transient smartparens iedit anzu evil goto-chg undo-tree eshell-z eshell-prompt-extras esh-help elpy pyvenv diff-hl cython-mode company-statistics company-anaconda bind-map bind-key auto-yasnippet yasnippet auto-dictionary packed anaconda-mode pythonic f dash s adoc-mode markup-faces helm avy helm-core async ac-ispell auto-complete popup mmm-mode markdown-toc markdown-mode gh-md company org-roam-server evil-unimpaired sqlite sqlite3 emacsql-sqlite3 org-roam ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path yapfify yaml-mode xterm-color unfill powerline smeargle shell-pop pytest pyenv-mode py-isort pip-requirements spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim multi-term magit-gitflow magit-popup live-py-mode hydra lv hy-mode dash-functional htmlize parent-mode helm-pydoc projectile helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck pkg-info epl flx highlight evil-magit magit git-commit with-editor transient smartparens iedit anzu evil goto-chg undo-tree eshell-z eshell-prompt-extras esh-help elpy pyvenv diff-hl cython-mode company-statistics company-anaconda bind-map bind-key auto-yasnippet yasnippet auto-dictionary packed anaconda-mode pythonic f dash s adoc-mode markup-faces helm avy helm-core async ac-ispell auto-complete popup mmm-mode markdown-toc markdown-mode gh-md company org-roam-server evil-unimpaired sqlite sqlite3 emacsql-sqlite3 org-roam ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

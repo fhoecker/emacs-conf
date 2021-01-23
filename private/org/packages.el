@@ -59,8 +59,10 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 (defun org/init-org ()
   (setq-default dotspacemacs-configuration-layers '(
-                                                    (org :variables
-                                                         org-enable-jira-support t
-                                                         jiralib-url "https://m2hycon.atlassian.net:443")))
-  )
+                                                    (org
+                                                         :variables
+                                                         org-enable-jira-support
+                                                         t
+                                                         jiralib-url "https://m2hycon.atlassian.net:443"))
+                                                         ) )
 ;;; packages.el ends here
